@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="librerias/bootstrap-4.1.1/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	 <link rel="stylesheet" href="librerias/fontawesome/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    
+    <!-- Bootstrap CSS 
+    <link rel="stylesheet" href="librerias/daterangepicker/daterangepicker.min.css">-->
+    <link rel="stylesheet" href="librerias/css/eco.css">
+    <title>Ecommerce</title>
+  </head>
+  <body >
+
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand">Ecommerce</a>
+      <form class="form-inline">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="button">
+          <i class="fas fa-shopping-cart"></i>
+          <span id="carroCompras">0</span>
+        </button>
+      </form>
+    </nav>
+    <div class="container-fluid">
+      <div id="seccionVenta" class="row">
+        <div class="col-4">
+          <h3>Oferta de Productos</h3>
+          <div id="listaProductos" class="list-group">
+            <button type="button" class="list-group-item list-group-item-action active">
+              Lista de Productos
+            </button>
+          </div>
+        </div>
+        <div class="col-4">
+          <h3>Orden Actual</h3>
+          <div class="row">
+            <div class="col-12">
+              <div class="accordion" id="accordionExample">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h2 class="mb-0 text-center">
+                      <span id="totalOreden" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        $ 0
+                      </span>
+                    </h2>
+                  </div>
+
+                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <ul id="listaDeOrden" class="list-group">
+                        <li class="list-group-item">Sin Productos</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                      <button id="comprar" disabled="disabled" class="btn btn-primary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Comprar
+                      </button>
+                    </h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <h3>Mis Ordenes</h3>
+              <ul id="listaDeOrdenAnteriores" class="list-group">
+                <li class="list-group-item">Sin Ordenes</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <h3>Crear Productos</h3>
+          <div class="card">
+            <div class="card-body">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Nombre</span>
+                </div>
+                <input id="crearNombre" type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Precio</span>
+                </div>
+                <input id="crearPrecio" type="number" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Codigo</span>
+                </div>
+                <input id="crearCodigo" type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+              <button id="crearProducto" type="button" class="btn btn-primary btn-lg btn-block">Crear Prodcuto</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+       <div id="resumenVenta" class="row" style="display: none;">
+        <div class="col-12">
+          <h3>Compra Exitosa</h3>
+          <div id="listaOrden" class="list-group">
+            <button type="button" class="list-group-item list-group-item-action active">
+              ORDEN # <h1 id="numeroOrden"></h1>
+            </button>
+          </div>
+          <button id="volver" type="button" class="btn btn-primary btn-lg btn-block">Volver a Comprar</button>
+        </div>
+         
+       </div>
+    </div>
+      
+
+	  <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="librerias/jquery/jquery-3.2.1.min.js"></script>
+    <script src="librerias/ajax/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="librerias/bootstrap-4.1.1/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <!--MOMENTJS-->
+  	<script src="librerias/js/moment.js"></script>
+    <script src="librerias/js/moment-with-locales.js"></script>
+    <!--DATARANGE
+    <script src="librerias/daterangepicker/jquery.daterangepicker.min.js"></script>-->
+    <script type="text/javascript">
+      
+      
+      listaDeProducto=[]
+      listaCarrito=[];
+      listaOredenes=[]
+      //BUSCAMOS PRODUCTOS
+      function buscarProductos(){
+       
+        $.ajax({
+            url : "http://server2.lnavarro.cl:3300/producto/",
+            dataType: "JSON",
+            type:"GET",
+            beforeSend: function () {
+            },
+            success: function(data){
+              console.log(data)
+              listaDeProducto = data; 
+              $("#listaProductos").html(`<button type="button" class="list-group-item list-group-item-action active">
+                                          Lista de Productos
+                                        </button>`)
+              for(i in listaDeProducto){
+                if(listaDeProducto[i].nombre){
+                    $("#listaProductos").append(`<button onClick="agregaraCarrito('${listaDeProducto[i].nombre}', '${listaDeProducto[i].precio}', '${listaDeProducto[i].codigo}')" type="button" class="list-group-item list-group-item-action">
+                                                  <h4>${listaDeProducto[i].nombre}</h4>
+                                                  valor: $ ${listaDeProducto[i].precio}
+                                                </button>`);
+                  }
+              }
+              
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+            }
+          });
+      }
+      buscarProductos();
+      // LEEMOS LISTA DE ARTICULO
+     
+
+      //AGREGAMOS A LISTA CARRITO
+      function agregaraCarrito(nuevoProcuto, precioIn, codigoIn){
+
+        //CARRITO
+        console.log(nuevoProcuto, precioIn, codigo)
+        var codigo = Number(codigoIn)
+        var precio =Number(precioIn)
+        if(listaCarrito.length==0){
+          listaCarrito.push({ 
+            codigo:codigo, 
+            nombre:nuevoProcuto, 
+            precio:precio, 
+            cantidad:1, 
+            total:Number(precio)
+            //sumar:this.cantidad+1
+          })
+        }else{
+          var nuevo
+          for(i in listaCarrito){
+            if(codigo==listaCarrito[i].codigo){
+              listaCarrito[i].cantidad=listaCarrito[i].cantidad+1
+              listaCarrito[i].total=listaCarrito[i].total+Number(precio);
+              actualizarOrden()
+              return false;
+            }else{
+              nuevo={ codigo:codigo, nombre:nuevoProcuto, precio:precio, cantidad:1, total:Number(precio)};
+            }
+          }
+          listaCarrito.push(nuevo);
+        }
+        console.log(listaCarrito)
+        actualizarOrden()
+
+      }
+
+      function actualizarOrden(){
+        //ORDEN
+        $("#listaDeOrden").html('');
+        var totalOreden=0;
+        var totalLista = 0
+        for(i in listaCarrito){
+          //TOTAL ORDEN
+          totalOreden=totalOreden+Number(listaCarrito[i].total)
+          $("#listaDeOrden").append(`<li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span>
+                                          <button onClick="restarCarrito(${i})">-</button>
+                                          <span class="badge badge-primary badge-pill">${listaCarrito[i].cantidad}</span>
+                                        </span>
+                                        ${listaCarrito[i].nombre}
+                                        <span class="badge badge-primary badge-pill">$ ${listaCarrito[i].total}</span>
+                                      </li>`);
+          //CANTIDAD
+          totalLista=totalLista+listaCarrito[i].cantidad
+
+        }
+         $("#totalOreden").html('$ '+totalOreden)
+        $("#carroCompras").html(totalLista)
+        //VALIDAR AUTO
+        if(listaCarrito.length>=1){
+          $("#comprar").attr("disabled", false)
+        }else{
+           $("#comprar").attr("disabled", true)
+        }
+      }
+
+      function restarCarrito(numberArray) {
+
+        var totalActual = listaCarrito[numberArray].total
+        var cantidadactual = listaCarrito[numberArray].cantidad
+        listaCarrito[numberArray].total=totalActual-(totalActual/cantidadactual);
+
+        listaCarrito[numberArray].cantidad--
+        listaCarrito[numberArray].total==0 ? listaCarrito.splice(numberArray,1):null;
+        console.log(listaCarrito);
+        actualizarOrden()
+        
+      }
+
+      $("#comprar").on("click", function(){
+        var orden={
+                    productos: listaCarrito,
+                    totalCompra: 5000,
+                    MetodoPago: "efectivo"
+                  }
+
+        $.ajax({
+            url : "http://server2.lnavarro.cl:3300/ordenes/",
+            dataType: "JSON",
+            data:JSON.stringify(orden),
+            type:"POST",
+            beforeSend: function () {
+            },
+            success: function(data){
+              console.log(data);
+              console.log(listaCarrito)
+              $("#numeroOrden").html(data.codigo)
+              // $("#listaOrden").html("");
+              for(i in listaCarrito){
+                 $("#listaOrden").append(`<button o type="button" class="list-group-item list-group-item-action">
+                                            <h4>${listaCarrito[i].nombre}</h4>
+                                            Cantidad: ${listaCarrito[i].cantidad} <br>
+                                            valor: $ ${listaCarrito[i].precio}
+                                          </button>`);
+
+              }
+
+              $("#seccionVenta").hide();
+              $("#resumenVenta").show();
+              listaCarrito=[];
+              actualizarOrden();
+              bucarOrdenes();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+            }
+          });
+        });
+
+      $("#volver").on("click", function(){
+          $("#seccionVenta").show();
+          $("#resumenVenta").hide();
+      })
+
+      function bucarOrdenes(){
+        $.ajax({
+            url : "http://server2.lnavarro.cl:3300/ordenes/",
+            dataType: "JSON",
+            type:"GET",
+            beforeSend: function () {
+            },
+            success: function(data){
+              console.log(data)
+              if(data.length>=1){
+
+                 $("#listaDeOrdenAnteriores").html("")
+                for(i in data){
+                  $("#listaDeOrdenAnteriores").append(`<li class="list-group-item d-flex justify-content-between align-items-center">
+                                                        ${data[i].codigo}
+                                                        <span class="badge badge-primary badge-pill">${data[i].created}</span>
+                                                      </li>`
+
+                  )
+
+                }
+              }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+            }
+          });
+      }
+
+      bucarOrdenes();
+
+      $("#crearProducto").on("click",function(){
+
+          if($("#crearNombre").val()=="" || $("#crearPrecio").val()=="" || $("#crearCodigo").val()==""){
+            alert("existen campos vacios")
+          }else{
+
+            var nuevoProducto={
+                nombre: $("#crearNombre").val(),
+                precio :  Number($("#crearPrecio").val()),
+                codigo : $("#crearCodigo").val()
+            };
+
+            $.ajax({
+              url : "http://server2.lnavarro.cl:3300/producto/",
+              dataType: "JSON",
+              data:nuevoProducto,
+              type:"POST",
+              beforeSend: function () {
+              },
+              success: function(data){
+                console.log(data);
+                buscarProductos()
+                actualizarOrden();
+                bucarOrdenes();
+              },
+              error: function (xhr, ajaxOptions, thrownError) {
+              }
+            });
+
+
+          }
+
+      })
+
+    </script>
+    </body>
+</html>
+
+
+

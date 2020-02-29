@@ -1,0 +1,17 @@
+
+/* CSS Document */
+
+
+
+div{
+	/* border:0.01rem solid #000; */
+	
+}
+
+body{
+}
+
+#listaDeOrdenAnteriores{
+	height: 300px;
+	overflow-y: scroll;
+}
